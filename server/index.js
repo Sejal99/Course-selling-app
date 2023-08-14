@@ -7,7 +7,23 @@ const dotenv=require("dotenv");
 dotenv.config()
 const app = express();
 
-app.use(cors());
+// app.use(cors());
+
+const allowedOrigins = [
+    'https://sejal-course-selling-app.vercel.app'
+    // Add more allowed origins if needed
+  ];
+  
+  app.use(cors({
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    }
+  }));
+
 app.use(express.json());
 
 app.use("/admin", adminRouter)
