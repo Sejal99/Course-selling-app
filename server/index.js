@@ -7,9 +7,7 @@ const dotenv=require("dotenv");
 dotenv.config()
 const app = express();
 
-app.use(cors({
-    origin: "https://sejal-course-selling-app.vercel.app"
-}));
+app.use(cors());
 app.use(express.json());
 
 app.use("/admin", adminRouter)
