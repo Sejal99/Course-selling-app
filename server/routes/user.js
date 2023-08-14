@@ -15,7 +15,7 @@ const router = express.Router();
       res.json({ message: 'User created successfully', token });
     }
   });
-  
+  //login
   router.post('/login', async (req, res) => {
     const { username, password } = req.headers;
     const user = await User.findOne({ username, password });
