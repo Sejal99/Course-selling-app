@@ -1,4 +1,4 @@
-const express = require('express');
+const jwt = require('jsonwebtoken');
 const { authenticateJwt} = require("../middleware/auth");
 const { User, Course, Admin } = require("../db");
 const router = express.Router();
@@ -11,7 +11,7 @@ const router = express.Router();
     } else {
       const newUser = new User({ username, password });
       await newUser.save();
-      const token = jwt.sign({ username, role: 'user' }, process.env.SECRET, { expiresIn: '1h' });
+      const token = jwt;
       res.json({ message: 'User created successfully', token });
     }
   });
